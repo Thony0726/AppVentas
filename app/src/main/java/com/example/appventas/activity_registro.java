@@ -78,23 +78,25 @@ public class activity_registro extends AppCompatActivity {
                 progressDialog.show();
 
                 //Ahora usamos el metodo
-                auth.createUserWithEmailAndPassword(userE, passE).addOnCompleteListener(activity_registro.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        //Task=Tareas devuelve si la tarea si se cumple
-                        //En este caso si se cumplio
-                        Toast.makeText(activity_registro.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
-                        //Si no logra registrarse
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(activity_registro.this, "Usuario no se ha podido registrar", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        Intent i = new Intent(activity_registro.this, activity_persona.class);
-                        i.putExtra("correo", etUser.getText().toString());
-                        startActivity(i);
-                        finish();
-                    }
-                });
+                auth.createUserWithEmailAndPassword(userE, passE).
+                        //Le pasamos la clase registro
+                                addOnCompleteListener(activity_registro.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                //Task=Tareas devuelve si la tarea si se cumple
+                                //En este caso si se cumplio
+                                Toast.makeText(activity_registro.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                                //Si no logra registrarse
+                                if (!task.isSuccessful()) {
+                                    Toast.makeText(activity_registro.this, "Usuario no se ha podido registrar", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                Intent i = new Intent(activity_registro.this, activity_persona.class);
+                                i.putExtra("correo",etUser.getText().toString());
+                                startActivity(i);
+                                finish();
+                            }
+                        });
             }
         });
 
