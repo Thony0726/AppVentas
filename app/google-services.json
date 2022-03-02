@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1038575333405",
+    "project_id": "app-ventas-anth",
+    "storage_bucket": "app-ventas-anth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038575333405:android:ffd8287506a46e64de96f4",
+        "android_client_info": {
+          "package_name": "com.example.appventas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038575333405-64eligdpns85e809f28bu4kte1qkn80a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appventas",
+            "certificate_hash": "22ce44d753263e30a06799e6d516c413a7a83ba7"
+          }
+        },
+        {
+          "client_id": "1038575333405-70iklvu3aqu0vlfke0d3e89km82s2apt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYMCY8W2NKlcEozGB41gH14J5yLJgQnhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038575333405-70iklvu3aqu0vlfke0d3e89km82s2apt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

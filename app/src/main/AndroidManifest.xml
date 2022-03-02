@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.appventas">
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_baseline_attach_money_24"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppVentas">
+        <activity
+            android:name=".activity_menu"
+            android:exported="false" />
+        <activity
+            android:name=".activity_ventas"
+            android:exported="false" />
+        <activity
+            android:name=".activity_lista_productos"
+            android:exported="false" />
+        <activity
+            android:name=".activity_inventario"
+            android:exported="false" />
+        <activity
+            android:name=".activity_registro"
+            android:exported="false" />
+        <activity
+            android:name=".activity_producto"
+            android:exported="false" />
+        <activity
+            android:name=".activity_persona"
+            android:exported="false" />
+        <activity
+            android:name=".activity_compras"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
