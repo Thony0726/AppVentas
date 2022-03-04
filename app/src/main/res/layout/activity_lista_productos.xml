@@ -6,20 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity_lista_productos">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/img_ola"
-        android:backgroundTint="@color/prmario"
-        android:foregroundTint="@color/prmario"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="-1dp">
 
-    </LinearLayout>
 
     <ImageButton
         android:id="@+id/imageButton4"
@@ -57,8 +44,44 @@
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        app:layout_constraintStart_toStartOf="parent">
+        <TextView android:id="@+id/lblCielo0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cielo: " />
+
+        <TextView android:id="@+id/lblCielo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/lblCielo0"/>
+
+        <TextView android:id="@+id/lblTemperatura0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lblCielo0"
+            android:layout_marginTop="5dp"
+            android:text="Temperatura: " />
+
+        <TextView android:id="@+id/lblTemperatura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lblCielo0"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/lblTemperatura0"/>
+
+        <TextView android:id="@+id/lblHumedad0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/lblTemperatura0"
+            android:text="Humedad: " />
+
+        <TextView android:id="@+id/lblHumedad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/lblTemperatura0"
+            android:layout_toRightOf="@id/lblHumedad0"/>
 
         <ListView
             android:layout_width="match_parent"

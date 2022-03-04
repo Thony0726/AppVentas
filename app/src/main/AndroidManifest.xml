@@ -17,7 +17,7 @@
             android:name=".activity_ventas"
             android:exported="false" />
         <activity
-            android:name=".activity_lista_productos"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".activity_inventario"
@@ -35,7 +35,7 @@
             android:name=".activity_compras"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity_lista_productos"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
