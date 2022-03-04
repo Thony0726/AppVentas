@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,13 +23,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class activity_lista_productos extends AppCompatActivity {
 
     private static final String TAGLOG = "firebase-db";
 
-    private TextView lblCielo;
-    private TextView lblTemperatura;
-    private TextView lblHumedad;
+    RecyclerView recyclerView;
+    adpatadorProductos_lista myMdapter;
+    ArrayList<Productos> list;
 
     private DatabaseReference dbProductos;
     private ValueEventListener eventListener;
@@ -37,21 +41,34 @@ public class activity_lista_productos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_productos);
 
-        lblCielo = (TextView) findViewById(R.id.lblCielo);
-        lblTemperatura = (TextView) findViewById(R.id.lblTemperatura);
-        lblHumedad = (TextView) findViewById(R.id.lblHumedad);
-
+        recyclerView = findViewById(R.id.recyclerProductos);
         dbProductos = FirebaseDatabase.getInstance().getReference().child("Productos");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        list = new ArrayList<>();
+        myMdapter = new adpatadorProductos_lista(this, list);
+        recyclerView.setAdapter(myMdapter);
+
+
         eventListener = new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Opcion 2
-                Productos pro = dataSnapshot.getValue(Productos.class);
-                lblCielo.setText(pro.getNombreProducto());
-                lblTemperatura.setText(pro.getCodigo() + "ºC");
-                lblHumedad.setText(pro.getStock() + "%");
-                Toast.makeText(activity_lista_productos.this, "Se a actualizado la base de datos", Toast.LENGTH_LONG);
-                Log.e(TAGLOG, "onDataChange:" + dataSnapshot.getValue().toString());
+                //Productos pro = dataSnapshot.getValue(Productos.class);
+                try {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Productos pro = dataSnapshot.getValue(Productos.class);
+                        list.add(pro);
+                    myMdapter.notifyDataSetChanged();
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
+                    e.printStackTrace();
+                }
+
+                //Toast.makeText(activity_lista_productos.this, "Se a actualizado la base de datos", Toast.LENGTH_LONG);
+                Log.e(TAGLOG, "onDataChange:" + snapshot.getValue().toString());
 
             }
 
@@ -63,27 +80,27 @@ public class activity_lista_productos extends AppCompatActivity {
             ChildEventListener childEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    Log.d(TAGLOG,"onChildAdded{" +snapshot.getKey()+": "+ snapshot.getValue()+"}");
+                    Log.d(TAGLOG, "onChildAdded{" + snapshot.getKey() + ": " + snapshot.getValue() + "}");
                     Toast.makeText(activity_lista_productos.this, "Se a actualizado la base de datos", Toast.LENGTH_LONG);
                 }
 
                 @Override
                 public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    Log.d(TAGLOG,"onChildChanged{" +snapshot.getKey()+": "+ snapshot.getValue()+"}");
+                    Log.d(TAGLOG, "onChildChanged{" + snapshot.getKey() + ": " + snapshot.getValue() + "}");
                     Toast.makeText(activity_lista_productos.this, "Se a actualizado la base de datos", Toast.LENGTH_LONG);
 
                 }
 
                 @Override
                 public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                    Log.d(TAGLOG,"onChildRemoved{" +snapshot.getKey()+": "+ snapshot.getValue()+"}");
+                    Log.d(TAGLOG, "onChildRemoved{" + snapshot.getKey() + ": " + snapshot.getValue() + "}");
                     Toast.makeText(activity_lista_productos.this, "Se han eliminado elementos de la base de datos", Toast.LENGTH_LONG);
 
                 }
 
                 @Override
                 public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    Log.d(TAGLOG,"onChildMoved{" +snapshot.getKey()+": "+ snapshot.getValue()+"}");
+                    Log.d(TAGLOG, "onChildMoved{" + snapshot.getKey() + ": " + snapshot.getValue() + "}");
                     Toast.makeText(activity_lista_productos.this, "Se han eliminado elementos de la base de datos", Toast.LENGTH_LONG);
                 }
 

@@ -8,6 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class activity_inventario extends AppCompatActivity {
 
@@ -68,8 +72,19 @@ public class activity_inventario extends AppCompatActivity {
         finish();
     }
     public void sesion(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity_inventario.this);
+        builder.setMessage("¿Desea cerrar sesion?").setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Intent intent = new Intent(activity_inventario.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                Toast.makeText(activity_inventario.this, "Cerraste sesion", Toast.LENGTH_LONG).show();
+            }
+        }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 }
