@@ -8,12 +8,32 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.w3c.dom.Text;
+
+import java.text.BreakIterator;
+import java.util.HashMap;
+import java.util.Map;
 
 public class activity_persona extends AppCompatActivity {
 
-    private TextView tvCorreo;
+    private TextView tvCorreo  ;
+    private EditText txtcedula;
+    private Button btnactualizar;
+    private Spinner spinner2;
+    private EditText txtnombre;
+    private EditText txtprovincia;
+    private DatabaseReference mDatabase;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +43,51 @@ public class activity_persona extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String correoR= b.getString("correo");
         tvCorreo.setText("CORREO: "+correoR);
+
+        spinner2 = (Spinner) findViewById(R.id.spinner2);
+
+        String[] respuesta = {"Ecuador", "Venezuela", "Colombia"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, respuesta);
+        spinner2.setAdapter(adapter);
+
+        txtcedula = (EditText) findViewById(R.id.txtCedula);
+
+        btnactualizar = (Button) findViewById(R.id.btnactualizar);
+        txtnombre = (EditText) findViewById(R.id.txtnombre);
+        txtprovincia = (EditText) findViewById(R.id.txtprovincia);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        btnactualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // String mensaje = mEditTextMensaje.getText().toString();
+                //  mDatabase.child("persona").setValue(mensaje);
+                String cedula = txtcedula.getText().toString();
+                mDatabase.child("persona").setValue(cedula);
+                Map<String, Object> personaMap = new HashMap<>();
+                personaMap.put("cedula", "" + txtcedula.getText().toString());
+                personaMap.put("Nombre", "" + txtnombre.getText().toString());
+                personaMap.put("provincia", "" + txtprovincia.getText().toString());
+                mDatabase.child("usuarios").setValue(personaMap);
+                mDatabase.child("Usuario").child("Administrador").push().setValue(personaMap);
+
+            }
+        });
+    }
+
+    public void mostrar (View view){
+        String seleccionado = spinner2.getSelectedItem().toString();
+        if (seleccionado.equals("Ecuador ")) {
+
+            // tv_respuesta.setText("Si eres inteligente ");
+        } else if (seleccionado.equals("Venezuela")) {
+            // tv_respuesta.setText("Si eres Experto ");
+
+
+        } else if (seleccionado.equals("Colombia")) {
+            //  tv_respuesta.setText("Si eres Sabio ");
+
+        }
 
     }
     /*se controla la pulsacion del boton atras*/
@@ -56,5 +121,7 @@ public class activity_persona extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+
 
 }

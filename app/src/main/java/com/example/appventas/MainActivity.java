@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     //variables
     private EditText etClave, etUsuario;
     private CheckBox checkBox;
-    private Spinner spinner1;
+    private Spinner spinner;
     private ProgressDialog mensajeProgreso;
     FirebaseAuth mAuth;
     //========================================================================================================================
@@ -42,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
         etClave = (EditText) findViewById(R.id.etClave);
         etUsuario = (EditText) findViewById(R.id.etUser);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
-        spinner1 = (Spinner) findViewById(R.id.spinner);
+        spinner = (Spinner) findViewById(R.id.spinner);
 
         //opciones del spinner
         String[] opciones = {"Persona", "Producto", "Inventario"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opciones);
-        spinner1.setAdapter(adapter);
+        spinner.setAdapter(adapter);
 
         //progresBar
         mensajeProgreso = new ProgressDialog(MainActivity.this);
@@ -134,6 +134,24 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, activity_registro.class);
         startActivity(intent);
         finish();
+    }
+    public void mostrar (View view){
+        String seleccionado = spinner.getSelectedItem().toString();
+        if (seleccionado.equals("Persona")) {
+            Intent i = new Intent(MainActivity.this, activity_persona.class);
+            startActivity(i);
+            // tv_respuesta.setText("Si eres inteligente ");
+        } else if (seleccionado.equals("Producto")) {
+            // tv_respuesta.setText("Si eres Experto ");
+            Intent i = new Intent(MainActivity.this, activity_producto.class);
+            startActivity(i);
+
+        } else if (seleccionado.equals("Inventario")) {
+            //  tv_respuesta.setText("Si eres Sabio ");
+            Intent i = new Intent(MainActivity.this, activity_inventario.class);
+            startActivity(i);
+        }
+
     }
 
     //========================================================================================================================
