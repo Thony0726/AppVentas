@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     //========================================================================================================================
     //validamos el usario y la contrasenia
-    private void validar(View view) {
+    public void validar(View view) {
         String correo = etUsuario.getText().toString();
         String clave = etClave.getText().toString();
         if (correo.isEmpty() || !correo.contains("@")) {

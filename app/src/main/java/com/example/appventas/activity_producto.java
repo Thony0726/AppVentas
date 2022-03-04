@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,53 +48,34 @@ public class activity_producto extends AppCompatActivity {
         txtVenta = findViewById(R.id.txtVenta);
 
 
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
         btnGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // String mensaje = meditTextMensaje.getText().toString();
-                // mDatabase.child("Productod").setValue(mensaje);
-                //coementario
-
-
-
-                Map<String, Object> personaMap =new HashMap<>();
-                //   personaMap.put( "codigo", ""+meditTextMensaje.getText().toString());
-                personaMap.put( "Nombre producto", ""+txtNombreproducto.getText().toString());
-                personaMap.put( "Stock", ""+ txtStock.getText().toString());
-                personaMap.put( "precio costo", ""+ txtCosto.getText().toString());
-                personaMap.put( "precio venta", ""+ txtVenta.getText().toString());
-
-                mDatabase.child("Producto").setValue(personaMap);
-
-            }
-        });
-
-        btnGuardar.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                // String mensaje = meditTextMensaje.getText().toString();
-                // mDatabase.child("Productod").setValue(mensaje);
-
-
-                Map<String, Object> personaMap =new HashMap<>();
-                //   personaMap.put( "codigo", ""+meditTextMensaje.getText().toString());
-                personaMap.put( "Nombre producto", ""+txtNombreproducto.getText().toString());
-                personaMap.put( "Stock", ""+ txtStock.getText().toString());
-                personaMap.put( "precio costo", ""+ txtCosto.getText().toString());
-                personaMap.put( "precio venta", ""+ txtVenta.getText().toString());
-
-                mDatabase.child("Producto").setValue(personaMap);
-                mDatabase.child("Producto").child("Administrador").push().setValue(personaMap);
-
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity_producto.this);
+                builder.setMessage("¿Desea crear el Producto?").setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Map<String, Object> personaMap = new HashMap<>();
+                        personaMap.put("codigo", "" + txtCodigo.getText().toString());
+                        personaMap.put("nombreProducto", "" + txtNombreproducto.getText().toString());
+                        personaMap.put("stock", "" + txtStock.getText().toString());
+                        personaMap.put("precioCosto", "" + txtCosto.getText().toString());
+                        personaMap.put("precioVenta", "" + txtVenta.getText().toString());
+                        mDatabase.child("Productos").push().setValue(personaMap);
+                        Toast.makeText(activity_producto.this, "Se creo con exito el producto", Toast.LENGTH_LONG).show();
+                    }
+                }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
             }
         });
-
     }
-    public void aumentar(){
+
+    public void aumentar() {
 
 
     }
@@ -131,8 +113,6 @@ public class activity_producto extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
 
 
 }
