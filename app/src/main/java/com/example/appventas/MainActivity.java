@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,6 +24,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox checkBox;
     private Spinner spinner;
     private ProgressDialog mensajeProgreso;
+    private DatabaseReference mUserDataBase;
     FirebaseAuth mAuth;
     //========================================================================================================================
 
@@ -39,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mUserDataBase = FirebaseDatabase.getInstance().getReference("Usuarios");
+
         etClave = (EditText) findViewById(R.id.etClave);
         etUsuario = (EditText) findViewById(R.id.etUser);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
@@ -51,8 +62,33 @@ public class MainActivity extends AppCompatActivity {
 
         //progresBar
         mensajeProgreso = new ProgressDialog(MainActivity.this);
-
         //verClave
+        verClave();
+        //Firebase
+        //mAuth = FirebaseAuth.getInstance();
+    }
+
+    public void ingreso() {
+        String usuario = etUsuario.getText().toString();
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    //mUserDataBase.child("usuUsuario").getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
+        Query firebaseSearchQuery = mUserDataBase.orderByChild("usuUsuarios").startAt(usuario).endAt(usuario + "\uf8ff");
+
+    }
+
+    public void verClave() {
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -64,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        //Firebase
-        mAuth = FirebaseAuth.getInstance();
+
     }
+
 
     //========================================================================================================================
     //validamos el usario y la contrasenia
@@ -75,10 +111,10 @@ public class MainActivity extends AppCompatActivity {
         String clave = etClave.getText().toString();
         if (correo.isEmpty() || !correo.contains("@")) {
             //Mensaje error
-            mostrarError(etUsuario,"Usuario no valido");
+            mostrarError(etUsuario, "Usuario no valido");
         } else if (clave.isEmpty() || clave.length() < 7) {
             //Mensaje error
-            mostrarError(etClave,"Clave no valida");
+            mostrarError(etClave, "Clave no valida");
         } else {
             //Parte para ingresar a la otra interfaz
             mensajeProgreso.setTitle("Login");
@@ -135,7 +171,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-    public void mostrar (View view){
+
+    public void mostrar(View view) {
         String seleccionado = spinner.getSelectedItem().toString();
         if (seleccionado.equals("Persona")) {
             Intent i = new Intent(MainActivity.this, activity_persona.class);
@@ -155,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //========================================================================================================================
-    private void mostrarError(EditText input, String mensaje){
+    private void mostrarError(EditText input, String mensaje) {
         input.setError(mensaje);
         input.requestFocus();
     }

@@ -58,7 +58,6 @@ public class activity_inventario extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-    //
 
     public void listaProductos(View view){
         Intent intent = new Intent(this, activity_lista_productos.class);

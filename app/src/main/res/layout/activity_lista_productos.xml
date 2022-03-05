@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbarAlwaysDrawHorizontalTrack="true"
+    android:scrollbarStyle="outsideInset"
     tools:context=".activity_lista_productos">
 
 
@@ -50,7 +52,8 @@
             android:id="@+id/recyclerProductos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"
+            android:fadeScrollbars="true" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

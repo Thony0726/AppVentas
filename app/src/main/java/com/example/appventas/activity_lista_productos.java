@@ -53,7 +53,7 @@ public class activity_lista_productos extends AppCompatActivity {
 
         eventListener = new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(DataSnapshot snapshot) {
                 //Opcion 2
                 //Productos pro = dataSnapshot.getValue(Productos.class);
                 try {
@@ -67,7 +67,7 @@ public class activity_lista_productos extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                //Toast.makeText(activity_lista_productos.this, "Se a actualizado la base de datos", Toast.LENGTH_LONG);
+                Toast.makeText(activity_lista_productos.this, "Se a actualizado la base de datos", Toast.LENGTH_LONG);
                 Log.e(TAGLOG, "onDataChange:" + snapshot.getValue().toString());
 
             }
