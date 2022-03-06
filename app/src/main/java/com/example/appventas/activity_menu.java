@@ -40,7 +40,6 @@ public class activity_menu extends AppCompatActivity {
                     });
             builder.show();
         }
-
         return super.onKeyDown(keyCode, event);
     }
 

@@ -78,6 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtnombre">
 
         <RadioButton
+            android:id="@+id/rdbtnHombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="10sp"
@@ -88,6 +89,7 @@
             android:textColorLink="@color/prmario" />
 
         <RadioButton
+            android:id="@+id/rdbtnMujer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="10sp"

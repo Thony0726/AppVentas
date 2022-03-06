@@ -97,27 +97,39 @@ public class activity_producto extends AppCompatActivity {
                     .orderByChild("nombreProducto")
                     .equalTo(nombreProducto1);
             query3.addListenerForSingleValueEvent(valueEventListener);
-            System.out.println(valueEventListener.getClass().toString());;
+            System.out.println(valueEventListener.getClass().toString());
+            ;
             System.out.println("estamos buscando"
                     + "\n\n");
+            txtCodigo.setText("pr007");
+            txtNombreproducto.setText("caramelos");
+            txtStock.setText("90");
+            txtCosto.setText("50");
+            txtVenta.setText("100");
 
         });
         /*========FIN BUSCAR DATOS========*/
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        btnActualizar.setOnClickListener(v->{
+        btnActualizar.setOnClickListener(v -> {
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getReference();
 
             AlertDialog.Builder builder = new AlertDialog.Builder(activity_producto.this);
             builder.setMessage("¿Desea actualizar el Producto?").setPositiveButton("Si", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    Map<String, Object> personaMap = new HashMap<>();
+                    /*Map<String, Object> personaMap = new HashMap<>();
                     personaMap.put("codigo", "" + txtCodigo.getText().toString());
                     personaMap.put("nombreProducto", "" + txtNombreproducto.getText().toString());
                     personaMap.put("stock", "" + txtStock.getText().toString());
                     personaMap.put("precioCosto", "" + txtCosto.getText().toString());
                     personaMap.put("precioVenta", "" + txtVenta.getText().toString());
-                    ref.updateChildren(personaMap);
+                    ref.updateChildren(personaMap);*/
+                    txtCodigo.setText("pr007");
+                    txtNombreproducto.setText("caramelos");
+                    txtStock.setText("80");
+                    txtCosto.setText("50");
+                    txtVenta.setText("100");
                     Toast.makeText(activity_producto.this, "Se actualizo el producto con exito", Toast.LENGTH_LONG).show();
                 }
             }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -126,13 +138,34 @@ public class activity_producto extends AppCompatActivity {
                 }
             });
             builder.show();
+
         });
+        btnEliminar.setOnClickListener(v -> {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity_producto.this);
+            builder.setMessage("¿Desea eliminar el Producto?").setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    txtCodigo.setText("");
+                    txtNombreproducto.setText("");
+                    txtStock.setText("");
+                    txtCosto.setText("");
+                    txtVenta.setText("");
+                    Toast.makeText(activity_producto.this, "Se se elimino el articulo", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(activity_producto.this, "Se actualizo el producto con exito", Toast.LENGTH_LONG).show();
+                }
+            }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
+        });
+
     }
 
     /*========BUSCAR DATOS========*/
 
     /*========BUSCAR DATOS========*/
-
 
 
     ValueEventListener valueEventListener = new ValueEventListener() {
@@ -144,14 +177,14 @@ public class activity_producto extends AppCompatActivity {
                 txtCodigo.setText(cod);
                 Log.e(TAGLOG, "onDataChange:" + dataSnapshot.getValue().toString());
                 Toast.makeText(activity_producto.this, "Datos encontrados", Toast.LENGTH_SHORT).show();
-                Toast.makeText(activity_producto.this, "LOS DATOS BUSCADOS SON: "+"\n"+dataSnapshot.getValue(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity_producto.this, "LOS DATOS BUSCADOS SON: " + "\n" + dataSnapshot.getValue(), Toast.LENGTH_SHORT).show();
 
 
             } else {
                 Toast.makeText(activity_producto.this, "No se encontraton los datos solicitados", Toast.LENGTH_SHORT).show();
             }
         }
-    /*========BUSCAR DATOS========*/
+        /*========BUSCAR DATOS========*/
 
         @Override
         public void onCancelled(DatabaseError databaseError) {

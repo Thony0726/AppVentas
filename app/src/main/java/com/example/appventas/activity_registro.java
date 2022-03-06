@@ -65,54 +65,51 @@ public class activity_registro extends AppCompatActivity {
             }
         });
 
-        btnRegistrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String userE = etUser.getText().toString();
-                String passE = etPassword.getText().toString();
+        btnRegistrar.setOnClickListener(view -> {
 
-                //Ahora validamos por si uno de los campos esta vacío
-                if (TextUtils.isEmpty(userE)) {
-                    //por si falta correo
-                    Toast.makeText(activity_registro.this, "Inserte correo", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(passE)) {
-                    //por si falta password
-                    Toast.makeText(activity_registro.this, "Inserte contraseña", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                progressDialog.setMessage("En proceso");
-                progressDialog.show();
-                //Ahora usamos el metodo
-                auth.createUserWithEmailAndPassword(userE, passE).
-                        //Le pasamos la clase registro
-                                addOnCompleteListener(activity_registro.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                //Task=Tareas devuelve si la tarea si se cumple
-                                //En este caso si se cumplio
-                                //Si no logra registrarse
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(activity_registro.this, "Usuario no se ha podido registrar", Toast.LENGTH_SHORT).show();
-                                    return;
-                                }
-                                /*=======================*/
-                                Map<String, Object> personaMap = new HashMap<>();
-                                personaMap.put("usuUsuario", "" + etUser.getText().toString());
-                                personaMap.put("usuClave", "" + etPassword.getText().toString());
-                                mDatabase.child("Usuarios").push().setValue(personaMap);
-                                Toast.makeText(activity_registro.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
-                                /*=======================*/
-                                Intent i = new Intent(activity_registro.this, activity_persona.class);
-                                i.putExtra("correo", etUser.getText().toString());
-                                startActivity(i);
-                                finish();
+            String userE = etUser.getText().toString();
+            String passE = etPassword.getText().toString();
 
-                            }
-                        });
-
+            //Ahora validamos por si uno de los campos esta vacío
+            if (TextUtils.isEmpty(userE)) {
+                //por si falta correo
+                Toast.makeText(activity_registro.this, "Inserte correo", Toast.LENGTH_SHORT).show();
+                return;
             }
+            if (TextUtils.isEmpty(passE)) {
+                //por si falta password
+                Toast.makeText(activity_registro.this, "Inserte contraseña", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            progressDialog.setMessage("En proceso");
+            progressDialog.show();
+            //Ahora usamos el metodo
+            auth.createUserWithEmailAndPassword(userE, passE).
+                    //Le pasamos la clase registro
+                            addOnCompleteListener(activity_registro.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            //Task=Tareas devuelve si la tarea si se cumple
+                            //En este caso si se cumplio
+                            //Si no logra registrarse
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(activity_registro.this, "Usuario no se ha podido registrar", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            /*=======================*/
+                            Map<String, Object> personaMap = new HashMap<>();
+                            personaMap.put("usuUsuario", "" + etUser.getText().toString());
+                            personaMap.put("usuClave", "" + etPassword.getText().toString());
+                            mDatabase.child("Usuarios").push().setValue(personaMap);
+                            Toast.makeText(activity_registro.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                            /*=======================*/
+                            Intent i = new Intent(activity_registro.this, activity_persona.class);
+                            i.putExtra("correo", etUser.getText().toString());
+                            startActivity(i);
+                            finish();
+
+                        }
+                    });
         });
     }
 
