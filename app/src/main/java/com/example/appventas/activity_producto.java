@@ -1,26 +1,35 @@
 package com.example.appventas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class activity_producto extends AppCompatActivity {
-    DatabaseReference databaseReference;
+
+
+    private static final String TAGLOG = "firebase-db";
+
     private EditText txtCodigo;
     private EditText txtNombreproducto;
     private EditText txtStock;
@@ -36,7 +45,9 @@ public class activity_producto extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_producto);
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        /*=============BASE DE DATOS=============*/
+
+        /**/
         btnGuardar = (Button) findViewById(R.id.btnGuardar);
         btnActualizar = (Button) findViewById(R.id.btnActualizar);
         btnBuscar = (Button) findViewById(R.id.btnBuscar);
@@ -47,8 +58,13 @@ public class activity_producto extends AppCompatActivity {
         txtCosto = findViewById(R.id.txtCosto);
         txtVenta = findViewById(R.id.txtVenta);
 
-
+        /*=======BASE DE DATOS======*/
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        //Buscar por nombreProducto;
+
+        /*=============*/
+
+
         btnGuardar.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -73,17 +89,81 @@ public class activity_producto extends AppCompatActivity {
                 builder.show();
             }
         });
+        /*========BUSCAR DATOS========*/
+        btnBuscar.setOnClickListener(v -> {
+            System.out.println("\n\n");
+            String nombreProducto1 = txtNombreproducto.getText().toString();
+            Query query3 = FirebaseDatabase.getInstance().getReference("Productos")
+                    .orderByChild("nombreProducto")
+                    .equalTo(nombreProducto1);
+            query3.addListenerForSingleValueEvent(valueEventListener);
+            System.out.println(valueEventListener.getClass().toString());;
+            System.out.println("estamos buscando"
+                    + "\n\n");
+
+        });
+        /*========FIN BUSCAR DATOS========*/
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        btnActualizar.setOnClickListener(v->{
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference();
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity_producto.this);
+            builder.setMessage("¿Desea actualizar el Producto?").setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    Map<String, Object> personaMap = new HashMap<>();
+                    personaMap.put("codigo", "" + txtCodigo.getText().toString());
+                    personaMap.put("nombreProducto", "" + txtNombreproducto.getText().toString());
+                    personaMap.put("stock", "" + txtStock.getText().toString());
+                    personaMap.put("precioCosto", "" + txtCosto.getText().toString());
+                    personaMap.put("precioVenta", "" + txtVenta.getText().toString());
+                    ref.updateChildren(personaMap);
+                    Toast.makeText(activity_producto.this, "Se actualizo el producto con exito", Toast.LENGTH_LONG).show();
+                }
+            }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
+        });
     }
 
-    public void aumentar() {
+    /*========BUSCAR DATOS========*/
+
+    /*========BUSCAR DATOS========*/
 
 
-    }
+
+    ValueEventListener valueEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+
+            if (dataSnapshot.exists()) {
+                String cod = dataSnapshot.child("codigo").getValue().toString();
+                txtCodigo.setText(cod);
+                Log.e(TAGLOG, "onDataChange:" + dataSnapshot.getValue().toString());
+                Toast.makeText(activity_producto.this, "Datos encontrados", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity_producto.this, "LOS DATOS BUSCADOS SON: "+"\n"+dataSnapshot.getValue(), Toast.LENGTH_SHORT).show();
+
+
+            } else {
+                Toast.makeText(activity_producto.this, "No se encontraton los datos solicitados", Toast.LENGTH_SHORT).show();
+            }
+        }
+    /*========BUSCAR DATOS========*/
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+            Log.e(TAGLOG, "Error:" + databaseError);
+            Toast.makeText(activity_producto.this, "ERROR EN LA BASE DE DATOS", Toast.LENGTH_SHORT).show();
+
+        }
+    };
+
 
     /*se controla la pulsacion del boton atras*/
     @Override
-
-
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // TODO Auto-generated method stub
         if (keyCode == event.KEYCODE_BACK) {
@@ -113,6 +193,4 @@ public class activity_producto extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
 }

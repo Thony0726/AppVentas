@@ -11,9 +11,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -35,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
     //========================================================================================================================
     //variables
+    private static final String TAGLOG = "firebase-db";
     private EditText etClave, etUsuario;
     private CheckBox checkBox;
     private Spinner spinner;
     private ProgressDialog mensajeProgreso;
     private DatabaseReference mUserDataBase;
+    private Button ingresar;
     FirebaseAuth mAuth;
     //========================================================================================================================
 
@@ -51,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
         mUserDataBase = FirebaseDatabase.getInstance().getReference("Usuarios");
 
         etClave = (EditText) findViewById(R.id.etClave);
-        etUsuario = (EditText) findViewById(R.id.etUser);
+        etUsuario = (EditText) findViewById(R.id.etUsuario);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
         spinner = (Spinner) findViewById(R.id.spinner);
-
+        ingresar = (Button) findViewById(R.id.btnIngresar);
         //opciones del spinner
-        String[] opciones = {"Persona", "Producto", "Inventario"};
+        String[] opciones = {"Producto", "Inventario", "Persona"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opciones);
         spinner.setAdapter(adapter);
 
@@ -64,29 +68,42 @@ public class MainActivity extends AppCompatActivity {
         mensajeProgreso = new ProgressDialog(MainActivity.this);
         //verClave
         verClave();
-        //Firebase
-        //mAuth = FirebaseAuth.getInstance();
+        /*========BUSCAR DATOS========*/
+        ingresar.setOnClickListener(v -> {
+            System.out.println("\n\n");
+            String usuario1 = etUsuario.getText().toString();
+            Query query3 = FirebaseDatabase.getInstance().getReference("Usuarios").orderByChild("usuUsuario")
+                    .equalTo(usuario1);
+            System.out.println("estamos buscando" + "\n\n");
+            query3.addListenerForSingleValueEvent(valueEventListener);
+            /*======================================================================================*/
+        });
+        /*========FIN BUSCAR DATOS========*/
     }
 
-    public void ingreso() {
-        String usuario = etUsuario.getText().toString();
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    //mUserDataBase.child("usuUsuario").getValue(String.class);
-                }
+    ValueEventListener valueEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+
+            if (dataSnapshot.exists()) {
+                Log.e(TAGLOG, "Datos Obtennidos" + dataSnapshot.getValue().toString());
+                mostrar();
+                Toast.makeText(MainActivity.this, "ACCEDISTE COMO: " + etUsuario.getText().toString().toUpperCase(), Toast.LENGTH_SHORT).show();
+            } else {
+                //Toast.makeText(MainActivity.this, "Datos encontrados", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "No existe ese usuario!!" + "\n" + " crea una centa y vuelvelo a intentar", Toast.LENGTH_SHORT).show();
             }
+        }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        /*========BUSCAR DATOS========*/
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+            Log.e(TAGLOG, "Error:" + databaseError);
+            Toast.makeText(MainActivity.this, "ERROR EN LA BASE DE DATOS", Toast.LENGTH_SHORT).show();
 
-            }
-        };
+        }
+    };
 
-        Query firebaseSearchQuery = mUserDataBase.orderByChild("usuUsuarios").startAt(usuario).endAt(usuario + "\uf8ff");
-
-    }
 
     public void verClave() {
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -100,44 +117,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
 
     //========================================================================================================================
-    //validamos el usario y la contrasenia
-    public void validar(View view) {
-        String correo = etUsuario.getText().toString();
-        String clave = etClave.getText().toString();
-        if (correo.isEmpty() || !correo.contains("@")) {
-            //Mensaje error
-            mostrarError(etUsuario, "Usuario no valido");
-        } else if (clave.isEmpty() || clave.length() < 7) {
-            //Mensaje error
-            mostrarError(etClave, "Clave no valida");
-        } else {
-            //Parte para ingresar a la otra interfaz
-            mensajeProgreso.setTitle("Login");
-            mensajeProgreso.setMessage("Iniciando sesion, espera un momento");
-            mensajeProgreso.setCanceledOnTouchOutside(false);
-            mensajeProgreso.show();
-            mAuth.signInWithEmailAndPassword(correo, clave).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        mensajeProgreso.dismiss();
-                        Intent intent = new Intent(MainActivity.this, activity_menu.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "No se pudo acceder con ese usuario y contraseña", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-
-        }
-    }
-
 
     //========================================================================================================================
     /*se controla la pulsacion del boton atras*/
@@ -172,29 +155,22 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    public void mostrar(View view) {
+    public void mostrar() {
         String seleccionado = spinner.getSelectedItem().toString();
         if (seleccionado.equals("Persona")) {
             Intent i = new Intent(MainActivity.this, activity_persona.class);
+            i.putExtra("correo", etUsuario.getText().toString());
             startActivity(i);
-            // tv_respuesta.setText("Si eres inteligente ");
         } else if (seleccionado.equals("Producto")) {
-            // tv_respuesta.setText("Si eres Experto ");
             Intent i = new Intent(MainActivity.this, activity_producto.class);
             startActivity(i);
 
         } else if (seleccionado.equals("Inventario")) {
-            //  tv_respuesta.setText("Si eres Sabio ");
             Intent i = new Intent(MainActivity.this, activity_inventario.class);
             startActivity(i);
         }
 
     }
 
-    //========================================================================================================================
-    private void mostrarError(EditText input, String mensaje) {
-        input.setError(mensaje);
-        input.requestFocus();
-    }
 
 }
