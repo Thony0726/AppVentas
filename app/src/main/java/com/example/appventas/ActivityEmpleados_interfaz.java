@@ -1,23 +1,45 @@
 package com.example.appventas;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class ActivityEmpleados_interfaz extends AppCompatActivity {
 
+    private static final String TAGLOG = "firebase-db";
+
+    RecyclerView recyclerView;
+    adpatadorProductos_lista myMdapter;
+    ArrayList<Productos> list;
+    ImageButton btn_agregarProducto;
+
+    private DatabaseReference dbProductos;
+    private ValueEventListener eventListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +48,84 @@ public class ActivityEmpleados_interfaz extends AppCompatActivity {
         BottomNavigationView btnNav = findViewById(R.id.bottomNavigationViewEmpleados);
         btnNav.setSelectedItemId(R.id.item2);
         btnNav.setOnNavigationItemSelectedListener(navListener);
+
+        /**/
+        btn_agregarProducto = (ImageButton)findViewById(R.id.btn_agregarProducto);
+        recyclerView = findViewById(R.id.rvEmpleados);
+        dbProductos = FirebaseDatabase.getInstance().getReference().child("Productos");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        list = new ArrayList<>();
+        myMdapter = new adpatadorProductos_lista(this, list);
+        recyclerView.setAdapter(myMdapter);
+        btn_agregarProducto.setOnClickListener(view -> {
+            startActivity(new Intent(ActivityEmpleados_interfaz.this, activity_producto.class));
+            finish();
+        });
+        /**/
+        eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                //Opcion 2
+                //Productos pro = dataSnapshot.getValue(Productos.class);
+                try {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Productos pro = dataSnapshot.getValue(Productos.class);
+                        list.add(pro);
+                        myMdapter.notifyDataSetChanged();
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
+                    e.printStackTrace();
+                }
+
+                Toast.makeText(ActivityEmpleados_interfaz.this, "Se a actualizado la base de datos", Toast.LENGTH_LONG);
+                Log.e(TAGLOG, "onDataChange:" + snapshot.getValue().toString());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAGLOG, "Error!", databaseError.toException());
+            }
+
+            ChildEventListener childEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    Log.d(TAGLOG, "onChildAdded{" + snapshot.getKey() + ": " + snapshot.getValue() + "}");
+                    Toast.makeText(ActivityEmpleados_interfaz.this, "Se a actualizado la base de datos", Toast.LENGTH_LONG);
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    Log.d(TAGLOG, "onChildChanged{" + snapshot.getKey() + ": " + snapshot.getValue() + "}");
+                    Toast.makeText(ActivityEmpleados_interfaz.this, "Se a actualizado la base de datos", Toast.LENGTH_LONG);
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                    Log.d(TAGLOG, "onChildRemoved{" + snapshot.getKey() + ": " + snapshot.getValue() + "}");
+                    Toast.makeText(ActivityEmpleados_interfaz.this, "Se han eliminado elementos de la base de datos", Toast.LENGTH_LONG);
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    Log.d(TAGLOG, "onChildMoved{" + snapshot.getKey() + ": " + snapshot.getValue() + "}");
+                    Toast.makeText(ActivityEmpleados_interfaz.this, "Se han eliminado elementos de la base de datos", Toast.LENGTH_LONG);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e(TAGLOG, "Error!", error.toException());
+                    Toast.makeText(ActivityEmpleados_interfaz.this, "Se han producido un error en la base de datos", Toast.LENGTH_LONG);
+
+                }
+            };
+        };
+        dbProductos.addValueEventListener(eventListener);
     }
     //Listener
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
