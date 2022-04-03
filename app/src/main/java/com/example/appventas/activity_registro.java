@@ -115,7 +115,7 @@ public class activity_registro extends AppCompatActivity {
 
 
     public void volverInicio(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, activity_lista_productos.class);
         startActivity(intent);
         finish();
     }

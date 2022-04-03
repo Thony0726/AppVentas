@@ -46,5 +46,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.0.3'
     // FirebaseUI for Cloud Firestore
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
+    //Para la animaciones
+    implementation 'com.airbnb.android:lottie:3.4.1'
 }
 apply plugin: 'com.google.gms.google-services'

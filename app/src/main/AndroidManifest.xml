@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.appventas">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_baseline_attach_money_24"
+        android:icon="@drawable/ic_astronauta"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppVentas">
+        <activity
+            android:name=".ActivityAjustes_interfaz"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityFacturacion_interfaz"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityInventario_interfaz"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityProductos_interfaz"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityProveedores_interfaz"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityEmpleados_interfaz"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityClientes_interfaz"
+            android:exported="false" />
         <activity
             android:name=".activity_menu"
             android:exported="false" />
@@ -35,7 +60,13 @@
             android:name=".activity_compras"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ActivityLogin_interfaz"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityRegistro_interfaz"
+            android:exported="false" />
+        <activity
+            android:name=".Activity_splash_interfaz"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

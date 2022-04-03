@@ -71,7 +71,7 @@ public class activity_menu extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity_menu.this);
         builder.setMessage("¿Desea cerrar sesion?").setPositiveButton("Si", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                Intent intent = new Intent(activity_menu.this, MainActivity.class);
+                Intent intent = new Intent(activity_menu.this, activity_lista_productos.class);
                 startActivity(intent);
                 finish();
                 Toast.makeText(activity_menu.this, "Cerraste sesion", Toast.LENGTH_LONG).show();

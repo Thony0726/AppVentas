@@ -74,7 +74,7 @@ public class activity_inventario extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity_inventario.this);
         builder.setMessage("¿Desea cerrar sesion?").setPositiveButton("Si", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                Intent intent = new Intent(activity_inventario.this, MainActivity.class);
+                Intent intent = new Intent(activity_inventario.this, activity_lista_productos.class);
                 startActivity(intent);
                 finish();
                 Toast.makeText(activity_inventario.this, "Cerraste sesion", Toast.LENGTH_LONG).show();

@@ -96,7 +96,7 @@
         android:id="@+id/linearLayout1"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="@color/prmario"
+        android:background="@color/primario"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,8 +109,8 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@drawable/img_ola"
-        android:backgroundTint="@color/prmario"
-        android:foregroundTint="@color/prmario"
+        android:backgroundTint="@color/primario"
+        android:foregroundTint="@color/primario"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,13 +119,13 @@
     <TextView
         android:layout_width="408dp"
         android:layout_height="88dp"
-        android:backgroundTint="@color/prmario"
+        android:backgroundTint="@color/primario"
         android:gravity="center|center_horizontal"
         android:text="INVENTARIO"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="40dp"
-        app:drawableTint="@color/prmario" />
+        app:drawableTint="@color/primario" />
 
     <ImageButton
         android:id="@+id/imageButton3"

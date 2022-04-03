@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item1"
+        android:icon="@drawable/ic_casa"
+        android:title="Inico"
+        android:tooltipText="Inicio"/>
+    <item
+        android:id="@+id/item2"
+        android:icon="@drawable/ic_parametros"
+        android:title="Parametros" />
+    <item
+        android:id="@+id/item3"
+        android:icon="@drawable/ic_inventario"
+        android:title="Inventario" />
+    <item
+        android:id="@+id/item4"
+        android:icon="@drawable/ic_facturacion"
+        android:title="Facturacion" />
+    <item
+        android:id="@+id/item5"
+        android:icon="@drawable/ic_ajustes"
+        android:title="Ajustes" />
+</menu>

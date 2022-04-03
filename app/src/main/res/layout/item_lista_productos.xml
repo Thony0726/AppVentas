@@ -1,158 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
-    android:backgroundTint="#C3E4FF"
+    android:layout_margin="8dp"
+    android:backgroundTint="@color/secundario"
     android:paddingEnd="5dp"
     app:cardBackgroundColor="#C3E4FF"
     app:cardCornerRadius="8dp"
-    app:cardElevation="2dp">
+    app:cardElevation="4dp">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_marginStart="16dp"
+            android:text="Venta:"
+            android:textColor="@color/teal_700"
+            android:textSize="26sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView14"></TextView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Producto:"
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold">
+        <TextView
+            android:id="@+id/proCosto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="coca-cola"
+            android:textColor="@color/teal_200"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView17"
+            app:layout_constraintTop_toTopOf="@+id/textView17"></TextView>
 
-            </TextView>
+        <TextView
+            android:id="@+id/productoNombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="1dp"
+            android:text="coca-cola"
+            android:textColor="#FF7043"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
 
-            <TextView
-                android:id="@+id/productoNombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="9dp"
-                android:text="coca-cola"
-                android:textColor="@color/prmario"
-                android:textSize="20sp"
-                android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/proStock"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="coca-cola"
+            android:textColor="@color/teal_200"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView15"
+            app:layout_constraintTop_toBottomOf="@+id/productoNombre"></TextView>
 
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/proCodigo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="20sp"
-            android:orientation="horizontal">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="coca-cola"
+            android:textColor="@color/teal_200"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/productoNombre"></TextView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Codigo:"
-                android:textColor="@color/black"
-                android:textSize="26sp">
+        <TextView
+            android:id="@+id/proVenta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:paddingBottom="2dp"
+            android:text="coca-cola"
+            android:textColor="@color/teal_200"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/textView17"
+            app:layout_constraintStart_toEndOf="@+id/textView16"
+            app:layout_constraintTop_toBottomOf="@+id/textView14"></TextView>
 
-            </TextView>
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Costo:"
+            android:textColor="@color/teal_700"
+            android:textSize="26sp"
+            app:layout_constraintEnd_toStartOf="@+id/proCosto"
+            app:layout_constraintStart_toEndOf="@+id/proVenta"
+            app:layout_constraintTop_toBottomOf="@+id/textView15"></TextView>
 
-            <TextView
-                android:id="@+id/proCodigo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:text="coca-cola"
-                android:textColor="@color/prmario"
-                android:textSize="20sp"></TextView>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_marginStart="16dp"
+            android:text="Stock:"
+            android:textColor="@color/teal_700"
+            android:textSize="26sp"
+            app:layout_constraintStart_toEndOf="@+id/proCodigo"
+            app:layout_constraintTop_toBottomOf="@+id/productoNombre">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20sp"
-                android:text="Stock:"
-                android:textColor="@color/black"
-                android:textSize="26sp">
+        </TextView>
 
-            </TextView>
-
-            <TextView
-                android:id="@+id/proStock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:text="coca-cola"
-                android:textColor="@color/prmario"
-                android:textSize="20sp"></TextView>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_marginStart="16dp"
+            android:text="Codigo:"
+            android:textColor="@color/teal_700"
+            android:textSize="26sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productoNombre"></TextView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20sp"
-                android:text="Costo:"
-                android:textColor="@color/black"
-                android:textSize="26sp">
-
-            </TextView>
-
-            <TextView
-                android:id="@+id/proCosto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:text="coca-cola"
-                android:textColor="@color/prmario"
-                android:textSize="20sp"></TextView>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/imageButton7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/secundario"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageButton9"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_eliminar" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20sp"
-                android:text="Venta:"
-                android:textColor="@color/black"
-                android:textSize="26sp">
-
-            </TextView>
-
-            <TextView
-                android:id="@+id/proVenta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:paddingBottom="2dp"
-                android:text="coca-cola"
-                android:textColor="@color/prmario"
-                android:textSize="20sp"></TextView>
-
-        </LinearLayout>
-    </LinearLayout>
-
+        <ImageButton
+            android:id="@+id/imageButton9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
+            android:background="@color/secundario"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton7"
+            app:layout_constraintStart_toEndOf="@+id/productoNombre"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_actualizar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

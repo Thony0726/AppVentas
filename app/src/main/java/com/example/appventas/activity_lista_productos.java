@@ -116,29 +116,25 @@ public class activity_lista_productos extends AppCompatActivity {
     }
 
 
-    /*se controla la pulsacion del boton atras*/
+    /*se controla la pulsacion del boton atras y cierra la aplicacion*/
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // TODO Auto-generated method stub
-        if (keyCode == event.KEYCODE_BACK) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Desea salir de la app?")
-                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent intent = new Intent(Intent.ACTION_MAIN);
-                            intent.addCategory(Intent.CATEGORY_HOME);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                        }
-                    })
-                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.dismiss();
-                        }
-                    });
-            builder.show();
-        }
-        return super.onKeyDown(keyCode, event);
+    public void onBackPressed() {
+        AlertDialog.Builder myBulid = new AlertDialog.Builder(this);
+        myBulid.setMessage("¿Deseas salir de la aplicacion?");
+        myBulid.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        myBulid.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog dialog = myBulid.create();
+        dialog.show();
     }
 
     public void volverInventario(View view) {

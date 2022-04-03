@@ -3,7 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/background_dialog.xml" value="0.1735" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/bg_redondeado_secundario.xml" value="0.1735" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/ic_ajustes.xml" value="0.1" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/ic_casa.xml" value="0.1" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/ic_clave.xml" value="0.1735" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/ic_empleados.xml" value="0.1735" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/ic_facturacion.xml" value="0.1" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/ic_parametros.xml" value="0.1735" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/ic_productos.xml" value="0.1735" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/nav_corners.xml" value="0.1735" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable/bg_redondeado_primario.xml" value="0.145" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable/bg_redondeado_rojo.xml" value="0.1155" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable/bg_spinner.xml" value="0.172" />
@@ -21,17 +31,27 @@
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable/img_ola.xml" value="0.145" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable/spinner_bg1.xml" value="0.172" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_activty_productos.xml" value="0.11203703703703703" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_ajustes_interfaz.xml" value="0.2" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_clientes_interfaz.xml" value="0.2" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_compras.xml" value="0.2" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_empleados_interfaz.xml" value="0.2" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_inventario.xml" value="0.2" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_lista_productos.xml" value="0.22" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_login_interfaz.xml" value="0.2" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_menu.xml" value="0.25" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_persona.xml" value="0.22" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_producto.xml" value="0.25" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_productos_interfaz.xml" value="0.2" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_proveedores_interfaz.xml" value="0.2" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_registro.xml" value="0.25" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_registro_interfaz.xml" value="0.2" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_splash_interfaz.xml" value="0.2" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_ventas.xml" value="0.22" />
-        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/item_lista_productos.xml" value="0.2" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/item_lista_productos.xml" value="0.33" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/menu_parametros.xml" value="0.5" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/layout/text_view.xml" value="0.2" />
+        <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/menu/menu2.xml" value="0.2" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_inventario.xml" value="0.1585144927536232" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/AppVentas/app/src/main/res/layout/activity_lista_productos.xml" value="0.14945652173913043" />
