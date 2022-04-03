@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "facturacion", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.item5:
-
                     startActivity(new Intent(MainActivity.this, ActivityAjustes_interfaz.class));
                     finish();
                     Toast.makeText(MainActivity.this, "ajustes", Toast.LENGTH_SHORT).show();

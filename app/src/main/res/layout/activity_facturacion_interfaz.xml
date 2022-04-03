@@ -6,4 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ActivityFacturacion_interfaz">
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationViewFacturacion"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:background="@drawable/nav_corners"
+        app:itemIconTint="@color/color_ic_menu"
+        app:itemTextColor="@color/color_ic_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
