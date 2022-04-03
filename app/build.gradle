@@ -48,5 +48,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
     //Para la animaciones
     implementation 'com.airbnb.android:lottie:3.4.1'
+    //mapa
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
 }
 apply plugin: 'com.google.gms.google-services'
