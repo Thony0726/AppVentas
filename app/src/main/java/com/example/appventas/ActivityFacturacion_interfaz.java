@@ -25,6 +25,7 @@ public class ActivityFacturacion_interfaz extends AppCompatActivity {
 // Botton nav
         BottomNavigationView btnNav = findViewById(R.id.bottomNavigationViewFacturacion);
         btnNav.setOnNavigationItemSelectedListener(navListener);
+        btnNav.setSelectedItemId(R.id.item4);
     }
 
     //Listener

@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.item1:
+                    startActivity(new Intent(MainActivity.this, MainActivity.class));
                     finish();
                     break;
                 case R.id.item2:

@@ -24,6 +24,7 @@ public class ActivityAjustes_interfaz extends AppCompatActivity {
         setContentView(R.layout.activity_ajustes_interfaz);
 // Botton nav
         BottomNavigationView btnNav = findViewById(R.id.bottomNavigationViewAjustes);
+        btnNav.setSelectedItemId(R.id.item5);
         btnNav.setOnNavigationItemSelectedListener(navListener);
     }
 
@@ -34,6 +35,7 @@ public class ActivityAjustes_interfaz extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.item1:
+                    startActivity(new Intent(ActivityAjustes_interfaz.this, MainActivity.class));
                     finish();
                     break;
                 case R.id.item2:

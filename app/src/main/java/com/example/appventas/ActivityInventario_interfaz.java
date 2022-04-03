@@ -24,6 +24,7 @@ public class ActivityInventario_interfaz extends AppCompatActivity {
         setContentView(R.layout.activity_inventario_interfaz);
         // Botton nav
         BottomNavigationView btnNav = findViewById(R.id.bottomNavigationViewInventario);
+        btnNav.setSelectedItemId(R.id.item3);
         btnNav.setOnNavigationItemSelectedListener(navListener);
     }
 
@@ -34,6 +35,8 @@ public class ActivityInventario_interfaz extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.item1:
+
+                    startActivity(new Intent(ActivityInventario_interfaz.this, MainActivity.class));
                     finish();
                     break;
                 case R.id.item2:
