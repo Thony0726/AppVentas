@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.item1:
+                    startActivity(new Intent(MainActivity.this, MainActivity.class));
                     finish();
                     break;
                 case R.id.item2:
@@ -90,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "facturacion", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.item5:
-
                     startActivity(new Intent(MainActivity.this, ActivityAjustes_interfaz.class));
                     finish();
                     Toast.makeText(MainActivity.this, "ajustes", Toast.LENGTH_SHORT).show();
