@@ -54,7 +54,7 @@
             android:textColor="#FF7043"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton9"
+            app:layout_constraintEnd_toStartOf="@+id/imgEditarProducto"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
@@ -136,7 +136,7 @@
             app:layout_constraintTop_toBottomOf="@+id/productoNombre"></TextView>
 
         <ImageButton
-            android:id="@+id/imageButton7"
+            android:id="@+id/imgEliminarProducto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -144,19 +144,19 @@
             android:layout_marginEnd="8dp"
             android:background="@color/secundario"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageButton9"
+            app:layout_constraintStart_toEndOf="@+id/imgEditarProducto"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_eliminar" />
 
         <ImageButton
-            android:id="@+id/imageButton9"
+            android:id="@+id/imgEditarProducto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="4dp"
             android:background="@color/secundario"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton7"
+            app:layout_constraintEnd_toStartOf="@+id/imgEliminarProducto"
             app:layout_constraintStart_toEndOf="@+id/productoNombre"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_actualizar" />

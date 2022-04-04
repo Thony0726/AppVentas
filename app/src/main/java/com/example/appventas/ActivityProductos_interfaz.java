@@ -69,6 +69,8 @@ public class ActivityProductos_interfaz extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 //Opcion 2
                 //Productos pro = dataSnapshot.getValue(Productos.class);
+                Toast.makeText(ActivityProductos_interfaz.this, "Base de datos actualizada", Toast.LENGTH_SHORT).show();
+                list.clear();
                 try {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Productos pro = dataSnapshot.getValue(Productos.class);
