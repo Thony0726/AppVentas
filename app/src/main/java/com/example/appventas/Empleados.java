@@ -4,17 +4,17 @@ public class Empleados {
     private String Apellidos;
     private String Cedula;
     private String Nombres;
-    private String telefono;
+    private String Telefono;
 
     public Empleados() {
 
     }
 
-    public Empleados(String apellidos, String cedula, String nombres, String telefono) {
+    public Empleados(String apellidos, String Cedula, String nombres, String Telefono) {
         Apellidos = apellidos;
-        Cedula = cedula;
+        Cedula = Cedula;
         Nombres = nombres;
-        this.telefono = telefono;
+        this.Telefono = Telefono;
     }
 
     public String getApellidos() {
@@ -30,7 +30,7 @@ public class Empleados {
     }
 
     public void setCedula(String cedula) {
-        Cedula = cedula;
+        Cedula = Cedula;
     }
 
     public String getNombres() {
@@ -42,11 +42,11 @@ public class Empleados {
     }
 
     public String getTelefono() {
-        return telefono;
+        return Telefono;
     }
 
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        this.Telefono = telefono;
     }
     @Override
     public String toString() {
@@ -54,7 +54,7 @@ public class Empleados {
                 "Apellidos='" + Apellidos + ':' +
                 ", Nombres=" + Nombres +
                 ", Cedula=" + Cedula +
-                ", telefono=" + telefono +
+                ", telefono=" + Telefono +
                 '}' +"\n";
     }
 }

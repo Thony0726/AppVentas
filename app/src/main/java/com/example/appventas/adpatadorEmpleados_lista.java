@@ -36,12 +36,10 @@ public class adpatadorEmpleados_lista extends RecyclerView.Adapter<adpatadorEmpl
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Empleados emp = list.get(position);
-        holder.Apellidos.setText(emp.getApellidos());
+        holder.Apellidos.setText(emp.getApellidos().toString());
         holder.Nombres.setText((emp.getNombres()).toString());
         holder.Cedula.setText((emp.getCedula()).toString());
-        holder.telefono.setText((emp.getTelefono()).toString());
-
-
+        holder.Telefono.setText((emp.getTelefono()).toString());
     }
 
     @Override
@@ -51,14 +49,14 @@ public class adpatadorEmpleados_lista extends RecyclerView.Adapter<adpatadorEmpl
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView Apellidos, Nombres, Cedula, telefono;
+        TextView Apellidos, Nombres, Cedula, Telefono;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             Apellidos = itemView.findViewById(R.id.empApellido);
             Nombres = itemView.findViewById(R.id.empNombreItem);
             Cedula = itemView.findViewById(R.id.empCedula);
-            telefono = itemView.findViewById(R.id.empTelefono);
+            Telefono = itemView.findViewById(R.id.empTelefono);
 
         }
     }

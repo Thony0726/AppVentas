@@ -34,32 +34,32 @@ public class ActivityEmpleados_interfaz extends AppCompatActivity {
     private static final String TAGLOG = "firebase-db";
 
     RecyclerView recyclerView;
-    adpatadorProductos_lista myMdapter;
-    ArrayList<Productos> list;
-    ImageButton btn_agregarProducto;
+    adpatadorEmpleados_lista myMdapter;
+    ArrayList<Empleados> list;
+    ImageButton btn_agregarEmpleados;
 
-    private DatabaseReference dbProductos;
+    private DatabaseReference dbEmpleados;
     private ValueEventListener eventListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empleados_interfaz);
+        dbEmpleados = FirebaseDatabase.getInstance().getReference().child("Empleados");
         // Botton nav
         BottomNavigationView btnNav = findViewById(R.id.bottomNavigationViewEmpleados);
         btnNav.setSelectedItemId(R.id.item2);
         btnNav.setOnNavigationItemSelectedListener(navListener);
 
         /**/
-        btn_agregarProducto = (ImageButton)findViewById(R.id.btn_agregarProducto);
-        recyclerView = findViewById(R.id.rvEmpleados);
-        dbProductos = FirebaseDatabase.getInstance().getReference().child("Productos");
+        btn_agregarEmpleados = (ImageButton)findViewById(R.id.btn_agregarEmpleados);
+        recyclerView = findViewById(R.id.rvEmpleados1);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        myMdapter = new adpatadorProductos_lista(this, list);
+        myMdapter = new adpatadorEmpleados_lista(this, list);
         recyclerView.setAdapter(myMdapter);
-        btn_agregarProducto.setOnClickListener(view -> {
+        btn_agregarEmpleados.setOnClickListener(view -> {
             startActivity(new Intent(ActivityEmpleados_interfaz.this, activity_producto.class));
             finish();
         });
@@ -71,7 +71,7 @@ public class ActivityEmpleados_interfaz extends AppCompatActivity {
                 //Productos pro = dataSnapshot.getValue(Productos.class);
                 try {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        Productos pro = dataSnapshot.getValue(Productos.class);
+                        Empleados pro = dataSnapshot.getValue(Empleados.class);
                         list.add(pro);
                         myMdapter.notifyDataSetChanged();
                     }
@@ -125,7 +125,7 @@ public class ActivityEmpleados_interfaz extends AppCompatActivity {
                 }
             };
         };
-        dbProductos.addValueEventListener(eventListener);
+        dbEmpleados.addValueEventListener(eventListener);
     }
     //Listener
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

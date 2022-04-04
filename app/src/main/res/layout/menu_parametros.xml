@@ -40,7 +40,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="75dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/ic_parametros"
+            android:background="@drawable/ic_usuarios"
             app:iconGravity="textEnd"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
