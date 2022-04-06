@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Angel Loor/AndroidStudioProjects/CuartoA2021ii/AppVentas/app/src/main/res/layout/activity_ajustes_interfaz.xml" value="0.2726449275362319" />
+        <entry key="..\:/Users/Angel Loor/AndroidStudioProjects/CuartoA2021ii/AppVentas/app/src/main/res/layout/activity_lista_productos.xml" value="0.2726449275362319" />
+        <entry key="..\:/Users/Angel Loor/AndroidStudioProjects/CuartoA2021ii/AppVentas/app/src/main/res/layout/activity_main.xml" value="0.2726449275362319" />
+        <entry key="..\:/Users/Angel Loor/AndroidStudioProjects/CuartoA2021ii/AppVentas/app/src/main/res/layout/activity_producto.xml" value="0.2726449275362319" />
+        <entry key="..\:/Users/Angel Loor/AndroidStudioProjects/CuartoA2021ii/AppVentas/app/src/main/res/layout/activity_productos_interfaz.xml" value="0.2726449275362319" />
+        <entry key="..\:/Users/Angel Loor/AndroidStudioProjects/CuartoA2021ii/AppVentas/app/src/main/res/layout/menu_parametros.xml" value="0.2726449275362319" />
+        <entry key="..\:/Users/Angel Loor/AndroidStudioProjects/CuartoA2021ii/AppVentas/app/src/main/res/layout/menu_productos.xml" value="0.2726449275362319" />
+        <entry key="..\:/Users/Angel Loor/AndroidStudioProjects/CuartoA2021ii/AppVentas/app/src/main/res/menu/menu.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Angel Loor/AndroidStudioProjects/CuartoA2021ii/AppVentas/app/src/main/res/menu/menu2.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/background_dialog.xml" value="0.1735" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/bg_redondeado_secundario.xml" value="0.1735" />
         <entry key="..\:/Users/Anthony/AndroidStudioProjects/AppVentas/app/src/main/res/drawable-v24/ic_ajustes.xml" value="0.1" />

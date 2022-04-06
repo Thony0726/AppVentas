@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/itemCasa"
+        android:icon="@drawable/ic_casa"
+        android:title="Inico"
+        android:tooltipText="Inicio" />
+    <item
+        android:id="@+id/itemProductosParametros1"
+        android:icon="@drawable/ic_facturacion"
+        android:title="Productos" />
+    <item
+        android:id="@+id/itemAjustes"
+        android:icon="@drawable/ic_ajustes"
+        android:title="Ajustes" />
+</menu>

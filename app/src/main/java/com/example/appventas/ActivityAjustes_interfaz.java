@@ -38,12 +38,11 @@ public class ActivityAjustes_interfaz extends AppCompatActivity implements OnMap
     private RadioButton estilos1, estilos2;
 
 
-
     private Double latC = 0.0287957200001;
-    private Double  LongC= -78.1492354367;
+    private Double LongC = -78.1492354367;
 
     private Double latE = 0.0537;
-    private Double  LongE= -78.1394 ;
+    private Double LongE = -78.1394;
 
     private CameraPosition posi;
     private LatLng DatosParis;
@@ -54,52 +53,15 @@ public class ActivityAjustes_interfaz extends AppCompatActivity implements OnMap
         setContentView(R.layout.activity_ajustes_interfaz);
         // Botton nav
         BottomNavigationView btnNav = findViewById(R.id.bottomNavigationViewAjustes);
-        btnNav.setSelectedItemId(R.id.item5);
+        btnNav.setSelectedItemId(R.id.itemAjustes);
         btnNav.setOnNavigationItemSelectedListener(navListener);
 
-        button2=findViewById(R.id.button2);
-        button3=findViewById(R.id.button3);
-//        estilos1=findViewById(R.id.estilos1);
-//        estilos2=findViewById(R.id.estilos2);
-
-
-
-
+        button2 = findViewById(R.id.button2);
+        button3 = findViewById(R.id.button3);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
-//        ArrayList<String> tipo = new ArrayList<>();
-//        tipo.add("NORMAL");
-//        tipo.add("SATELITE");
-//        tipo.add("TERRENO");
-//        tipo.add("HÍBRIDO");
-//        modos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,tipo));
-
-
-//        modos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                switch (i){
-//                    case 0:
-//                        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//                        break;
-//                    case 1 :
-//                        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-//                        break;
-//                    case 2 :
-//                        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-//                        break;
-//                    case 3 :
-//                        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-//                        break;
-//                }
-//            }
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//            }
-//        });
     }
 
     @Override
@@ -125,7 +87,7 @@ public class ActivityAjustes_interfaz extends AppCompatActivity implements OnMap
                         .title("Cayambe (Parque-Yaznan)"));
 
                 CameraUpdate camaraBog = CameraUpdateFactory.newLatLngZoom(
-                        new LatLng(latC, LongC),8
+                        new LatLng(latC, LongC), 8
                 );
                 mMap.moveCamera(camaraBog);
                 CameraPosition camPos = new CameraPosition.Builder()
@@ -143,9 +105,8 @@ public class ActivityAjustes_interfaz extends AppCompatActivity implements OnMap
                         ActivityAjustes_interfaz.this,
                         "Parque-Yaznan\n" +
                                 "Latitud: " + suc1.latitude + "\n" +
-                                "Longitud: " + suc1.longitude + "\n" ,
+                                "Longitud: " + suc1.longitude + "\n",
                         Toast.LENGTH_SHORT).show();
-
 
 
             }
@@ -183,7 +144,7 @@ public class ActivityAjustes_interfaz extends AppCompatActivity implements OnMap
                         ActivityAjustes_interfaz.this,
                         "Instituto Nelson Isauro Torres\n" +
                                 "Latitud: " + suc2.latitude + "\n" +
-                                "Longitud: " + suc2.longitude + "\n" ,
+                                "Longitud: " + suc2.longitude + "\n",
                         Toast.LENGTH_SHORT).show();
 
 
@@ -234,9 +195,9 @@ public class ActivityAjustes_interfaz extends AppCompatActivity implements OnMap
 //        });
 
 
-
     }
-//    public void estilos1 (View v){
+
+    //    public void estilos1 (View v){
 //        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 //        boolean success = mMap.setMapStyle(new MapStyleOptions(getResources()
 //                .getString(R.string.style_json)));
@@ -249,52 +210,37 @@ public class ActivityAjustes_interfaz extends AppCompatActivity implements OnMap
 //                .getString(R.string.style_json2)));
 //
 //    }
+
+
+//    //Listener
 //Listener
 private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.item1:
+            case R.id.itemCasa:
                 startActivity(new Intent(ActivityAjustes_interfaz.this, MainActivity.class));
                 finish();
                 break;
-            case R.id.item2:
+            case R.id.itemProductosParametros1:
 
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(ActivityAjustes_interfaz.this, R.style.BottomSheetDialogTheme);
-                /*=========CLIENTES=========*/
-                View bottomsheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.menu_parametros, (LinearLayout) findViewById(R.id.bottonSheetContainer));
-                bottomsheetView.findViewById(R.id.btn_param_cliente).setOnClickListener(v -> {
-                    startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityClientes_interfaz.class));
-                    finish();
-                    Toast.makeText(ActivityAjustes_interfaz.this, "Clientes", Toast.LENGTH_SHORT).show();
-                    bottomSheetDialog.dismiss();
-                });
-
-                /*=========EMPLEADOS=========*/
-                bottomsheetView.findViewById(R.id.btn_param_empleados).setOnClickListener(v -> {
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new fragment_Empleados()).commit();
-                    startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityEmpleados_interfaz.class));
-                    finish();
-                    Toast.makeText(ActivityAjustes_interfaz.this, "empleados", Toast.LENGTH_SHORT).show();
-                    bottomSheetDialog.dismiss();
-                });
-
-                /*=========PROVEEDORES=========*/
-                bottomsheetView.findViewById(R.id.btn_param_proveedores).setOnClickListener(v -> {
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new fragment_Proveedores()).commit();
-                    startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityProveedores_interfaz.class));
-                    finish();
-                    Toast.makeText(ActivityAjustes_interfaz.this, "proveedores", Toast.LENGTH_SHORT).show();
-                    bottomSheetDialog.dismiss();
-                });
-
-                /*=========PRODUCTOS=========*/
-                bottomsheetView.findViewById(R.id.btn_param_productos).setOnClickListener(v -> {
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new fragment_Productos()).commit();
+                /*=========LISTA PRODUCTOS=========*/
+                View bottomsheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.menu_productos, (LinearLayout) findViewById(R.id.bottonSheetContainer));
+                bottomsheetView.findViewById(R.id.btn_ListaProductos).setOnClickListener(v -> {
                     startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityProductos_interfaz.class));
                     finish();
-                    Toast.makeText(ActivityAjustes_interfaz.this, "productos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityAjustes_interfaz.this, "LISTA DE PRODUCTOS", Toast.LENGTH_SHORT).show();
+                    bottomSheetDialog.dismiss();
+                });
+
+                /*=========AGREGAR PODUCTOS=========*/
+                bottomsheetView.findViewById(R.id.btn_AgregarProductosMenu).setOnClickListener(v -> {
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new fragment_Empleados()).commit();
+                    startActivity(new Intent(ActivityAjustes_interfaz.this, activity_producto.class));
+                    finish();
+                    Toast.makeText(ActivityAjustes_interfaz.this, "AGREGA UN NUEVO PRODUCTO", Toast.LENGTH_SHORT).show();
                     bottomSheetDialog.dismiss();
                 });
 
@@ -302,17 +248,7 @@ private BottomNavigationView.OnNavigationItemSelectedListener navListener = new 
                 bottomSheetDialog.setContentView(bottomsheetView);
                 bottomSheetDialog.show();
                 break;
-            case R.id.item3:
-                startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityInventario_interfaz.class));
-                finish();
-                Toast.makeText(ActivityAjustes_interfaz.this, "inventario", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.item4:
-                startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityFacturacion_interfaz.class));
-                finish();
-                Toast.makeText(ActivityAjustes_interfaz.this, "facturacion", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.item5:
+            case R.id.itemAjustes:
                 startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityAjustes_interfaz.class));
                 finish();
                 Toast.makeText(ActivityAjustes_interfaz.this, "ajustes", Toast.LENGTH_SHORT).show();
@@ -322,7 +258,6 @@ private BottomNavigationView.OnNavigationItemSelectedListener navListener = new 
         return true;
     }
 };
-
     /*se controla la pulsacion del boton atras y cierra la aplicacion*/
     @Override
     public void onBackPressed() {
@@ -343,4 +278,77 @@ private BottomNavigationView.OnNavigationItemSelectedListener navListener = new 
         AlertDialog dialog = myBulid.create();
         dialog.show();
     }
+//    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+//        @Override
+//        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//            switch (item.getItemId()) {
+//                case R.id.item1:
+//                    startActivity(new Intent(ActivityAjustes_interfaz.this, MainActivity.class));
+//                    finish();
+//                    break;
+//                case R.id.item2:
+//
+//                    BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(ActivityAjustes_interfaz.this, R.style.BottomSheetDialogTheme);
+//                    /*=========CLIENTES=========*/
+//                    View bottomsheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.menu_parametros, (LinearLayout) findViewById(R.id.bottonSheetContainer));
+//                    bottomsheetView.findViewById(R.id.btn_param_cliente).setOnClickListener(v -> {
+//                        startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityClientes_interfaz.class));
+//                        finish();
+//                        Toast.makeText(ActivityAjustes_interfaz.this, "Clientes", Toast.LENGTH_SHORT).show();
+//                        bottomSheetDialog.dismiss();
+//                    });
+//
+//                    /*=========EMPLEADOS=========*/
+//                    bottomsheetView.findViewById(R.id.btn_param_empleados).setOnClickListener(v -> {
+////                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new fragment_Empleados()).commit();
+//                        startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityEmpleados_interfaz.class));
+//                        finish();
+//                        Toast.makeText(ActivityAjustes_interfaz.this, "empleados", Toast.LENGTH_SHORT).show();
+//                        bottomSheetDialog.dismiss();
+//                    });
+//
+//                    /*=========PROVEEDORES=========*/
+//                    bottomsheetView.findViewById(R.id.btn_param_proveedores).setOnClickListener(v -> {
+////                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new fragment_Proveedores()).commit();
+//                        startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityProveedores_interfaz.class));
+//                        finish();
+//                        Toast.makeText(ActivityAjustes_interfaz.this, "proveedores", Toast.LENGTH_SHORT).show();
+//                        bottomSheetDialog.dismiss();
+//                    });
+//
+//                    /*=========PRODUCTOS=========*/
+//                    bottomsheetView.findViewById(R.id.btn_param_productos).setOnClickListener(v -> {
+////                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new fragment_Productos()).commit();
+//                        startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityProductos_interfaz.class));
+//                        finish();
+//                        Toast.makeText(ActivityAjustes_interfaz.this, "productos", Toast.LENGTH_SHORT).show();
+//                        bottomSheetDialog.dismiss();
+//                    });
+//
+//                    /*=========MOSTRAMOS EL DIALOGO=========*/
+//                    bottomSheetDialog.setContentView(bottomsheetView);
+//                    bottomSheetDialog.show();
+//                    break;
+//                case R.id.item3:
+//                    startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityInventario_interfaz.class));
+//                    finish();
+//                    Toast.makeText(ActivityAjustes_interfaz.this, "inventario", Toast.LENGTH_SHORT).show();
+//                    break;
+//                case R.id.item4:
+//                    startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityFacturacion_interfaz.class));
+//                    finish();
+//                    Toast.makeText(ActivityAjustes_interfaz.this, "facturacion", Toast.LENGTH_SHORT).show();
+//                    break;
+//                case R.id.item5:
+//                    startActivity(new Intent(ActivityAjustes_interfaz.this, ActivityAjustes_interfaz.class));
+//                    finish();
+//                    Toast.makeText(ActivityAjustes_interfaz.this, "ajustes", Toast.LENGTH_SHORT).show();
+//                    break;
+//
+//            }
+//            return true;
+//        }
+//    };
+
 }
